@@ -1,12 +1,13 @@
 import org.example.DemoUtils
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import java.time.Duration
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 
-@DisplayNameGeneration(ReplaceUnderscores::class)
+@TestMethodOrder(OrderAnnotation::class)
 class DemoUtilsTest {
 
     var demoUtils = DemoUtils()
@@ -41,6 +42,7 @@ class DemoUtilsTest {
 
     //@DisplayName("Equals and Not Equals")
     @Test
+    @Order(1)
     fun test_Equals_And_Not_Equals() {
         assertEquals(6, demoUtils.add(2, 4), "2+4 must be 6")
         assertNotEquals(6, demoUtils.add(1, 4), "2+4 must not be 6")
@@ -48,6 +50,7 @@ class DemoUtilsTest {
 
     //@DisplayName("Null and Not Null")
     @Test
+    @Order(0)
     fun test_Null_And_Not_Null() {
         val str1: String? = null
         val str2 = "Tamer"
@@ -95,6 +98,7 @@ class DemoUtilsTest {
 
     @DisplayName("Lines match")
     @Test
+    @Order(30)
     fun testLinesMatch() {
         val theList = listOf("Tamer", "2", "code")
 
