@@ -1,6 +1,9 @@
 import org.example.DemoUtils
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNull
 
 @DisplayNameGeneration(ReplaceUnderscores::class)
 class DemoUtilsTest {
@@ -38,8 +41,8 @@ class DemoUtilsTest {
     //@DisplayName("Equals and Not Equals")
     @Test
     fun test_Equals_And_Not_Equals() {
-        Assertions.assertEquals(6, demoUtils.add(2, 4), "2+4 must be 6")
-        Assertions.assertNotEquals(6, demoUtils.add(1, 4), "2+4 must not be 6")
+        assertEquals(6, demoUtils.add(2, 4), "2+4 must be 6")
+        assertNotEquals(6, demoUtils.add(1, 4), "2+4 must not be 6")
     }
 
     //@DisplayName("Null and Not Null")
@@ -47,7 +50,7 @@ class DemoUtilsTest {
     fun test_Null_And_Not_Null() {
         val str1: String? = null
         val str2 = "Tamer"
-        Assertions.assertNull(demoUtils.checkNull(str1), "Object should be null")
+        assertNull(demoUtils.checkNull(str1), "Object should be null")
         Assertions.assertNotNull(demoUtils.checkNull(str2), "Object should not be null")
     }
 
@@ -78,6 +81,23 @@ class DemoUtilsTest {
     fun testArrayEquals() {
         val stringsArray = arrayOf("A", "B", "C")
         Assertions.assertArrayEquals(stringsArray, demoUtils.firstThreeLettersOfAlphabet, "Array should be the Same")
+    }
+
+    @DisplayName("Iterable equals")
+    @Test
+    fun testIterableEquals() {
+        val theList: List<String?> = listOf("Tamer", "2", "code")
+
+        Assertions.assertIterableEquals(theList, demoUtils.academyInList, "Expected list should be same as actual list")
+    }
+
+
+    @DisplayName("Lines match")
+    @Test
+    fun testLinesMatch() {
+        val theList = listOf("Tamer", "2", "code")
+
+        Assertions.assertLinesMatch(theList, demoUtils.academyInList, "Lines should match")
     }
 
 }
