@@ -1,6 +1,7 @@
 import org.example.DemoUtils
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
+import java.time.Duration
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
@@ -98,6 +99,26 @@ class DemoUtilsTest {
         val theList = listOf("Tamer", "2", "code")
 
         Assertions.assertLinesMatch(theList, demoUtils.academyInList, "Lines should match")
+    }
+
+    @DisplayName("Throws and Does Not Throw")
+    @Test
+    fun testThrowsAndDoesNotThrow() {
+        Assertions.assertThrows(
+            Exception::class.java,
+            { demoUtils.throwException(-1) }, "Should throw exception"
+        )
+
+        Assertions.assertDoesNotThrow({ demoUtils.throwException(5) }, "Should not throw exception")
+    }
+
+    @DisplayName("Timeout")
+    @Test
+    fun testTimeout() {
+        Assertions.assertTimeoutPreemptively(
+            Duration.ofSeconds(3), { demoUtils.checkTimeout() },
+            "Method should execute in 3 seconds"
+        )
     }
 
 }
