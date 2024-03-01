@@ -71,4 +71,13 @@ class DemoUtilsTest {
         Assertions.assertTrue(demoUtils.isGreater(gradeOne, gradeTwo), "This Should return true")
         Assertions.assertFalse(demoUtils.isGreater(gradeTwo, gradeOne), "This Should return false")
     }
+
+
+    @DisplayName("Array Equals")
+    @Test
+    fun testArrayEquals() {
+        val stringsArray = arrayOf("A", "B", "C")
+        Assertions.assertArrayEquals(stringsArray, demoUtils.firstThreeLettersOfAlphabet, "Array should be the Same")
+    }
+
 }
